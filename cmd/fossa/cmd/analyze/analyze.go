@@ -130,7 +130,7 @@ func Do(modules []module.Module) (analyzed []module.Module, err error) {
 func uploadAnalysis(normalized []fossa.SourceUnit) error {
 	fossa.MustInit(config.Endpoint(), config.APIKey())
 	log.ShowSpinner("Uploading analysis...")
-	locator, err := fossa.Upload(config.Fetcher(), config.Project(), config.Revision(), config.Title(), config.Branch(), normalized)
+	locator, err := fossa.Upload(config.Fetcher(), config.Project(), config.Revision(), config.Title(), config.Branch(), config.ProjectURL(), config.JiraProjectKey(), normalized)
 	log.StopSpinner()
 	if err != nil {
 		log.Logger.Fatalf("Error during upload: %s", err.Error())
